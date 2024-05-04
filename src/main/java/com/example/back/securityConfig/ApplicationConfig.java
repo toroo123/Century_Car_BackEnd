@@ -29,8 +29,8 @@ public class ApplicationConfig {
                 .addFilterBefore(new JwtTokenValidator(), BasicAuthenticationFilter.class)
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()));
-//        .httpBasic(Customizer.withDefaults())
-//        .formLogin(Customizer.withDefaults());
+        //.httpBasic(Customizer.withDefaults())
+        //.formLogin(Customizer.withDefaults());
         return http.build();
     }
 

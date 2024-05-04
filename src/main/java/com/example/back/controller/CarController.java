@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/car")
+@RequestMapping("/car")
 public class CarController {
     @Autowired
     private CarRepository carRepository;
