@@ -6,12 +6,13 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "fuelType")
+@Document(collection = "diagnostic")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class FuelType {
+public class Diagnostic {
     @Id
     private String id;
-    private String name;
+    private String description;
+    private String fileUrl;
 }
