@@ -1,6 +1,7 @@
 package com.example.back.controller;
 
 import com.example.back.model.User;
+import com.example.back.model.UserPublicInfo;
 import com.example.back.reponse.AuthResponse;
 import com.example.back.repository.UserRepository;
 import com.example.back.securityConfig.JwtProvider;
@@ -80,10 +81,16 @@ public class UserController {
 
         String token = JwtProvider.generateToken(authentication);
         AuthResponse authResponse = new AuthResponse();
-
+        User user = userRepository.findByEmail(username);
+        UserPublicInfo userInfo = new UserPublicInfo();
+        userInfo.setFullName(user.getFullName());
+        userInfo.setEmail(user.getEmail());
+        userInfo.setId(user.getId());
+        userInfo.setRole(user.getRole());
         authResponse.setMessage("Login success");
         authResponse.setJwt(token);
         authResponse.setStatus(true);
+        authResponse.setUser(userInfo);
 
         return new ResponseEntity<>(authResponse,HttpStatus.OK);
     }

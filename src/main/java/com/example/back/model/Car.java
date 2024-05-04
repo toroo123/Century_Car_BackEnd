@@ -35,7 +35,7 @@ public class Car {
     @DBRef
     private FuelType fuelType;
     @DBRef
-    private User user;
+    private UserPublicInfo user;
     @DBRef
     private List<Diagnostic> diagnosticList;
 }

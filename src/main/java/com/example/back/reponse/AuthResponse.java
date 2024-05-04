@@ -1,14 +1,18 @@
 package com.example.back.reponse;
 
+import com.example.back.model.UserPublicInfo;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class AuthResponse {
     private String jwt;
     private String message;
     private Boolean status;
+    private UserPublicInfo user;
 
     public String getJwt() {
         return jwt;
