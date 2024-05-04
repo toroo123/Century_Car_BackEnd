@@ -3,16 +3,15 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import java.security.NoSuchAlgorithmException;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class JwtProvider {
 
@@ -68,6 +67,23 @@ public class JwtProvider {
             System.err.println("Error extracting email from JWT: " + e.getMessage());
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public static Authentication parseToken(String jwt) {
+        try {
+            Claims claims = Jwts.parser()
+                    .setSigningKey(key)
+                    .parseClaimsJws(jwt)
+                    .getBody();
+
+            String email = String.valueOf(claims.get("email"));
+            String authorities = String.valueOf(claims.get("authorities"));
+            List<GrantedAuthority> authorityList = AuthorityUtils.commaSeparatedStringToAuthorityList(authorities);
+
+            return new UsernamePasswordAuthenticationToken(email, null, authorityList);
+        } catch (Exception e) {
+            throw new RuntimeException("Error parsing JWT token", e);
         }
     }
 }
