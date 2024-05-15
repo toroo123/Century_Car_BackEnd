@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.awt.*;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -17,9 +18,8 @@ import java.util.List;
 public class Car {
     @Id
     private String id;
-
     private String name;
-
+    private String brandType;
     private BigDecimal price;
     private String motorPower;
     private String color;
@@ -30,8 +30,8 @@ public class Car {
     private int doorNumber;
     private String carNumber;
     private String motorNumber;
-    @DBRef
-    private BrandType brandType;
+//    @DBRef
+//    private BrandType brandType;
     @DBRef
     private FuelType fuelType;
     @DBRef
