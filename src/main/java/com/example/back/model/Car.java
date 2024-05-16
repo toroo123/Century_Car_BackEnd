@@ -20,6 +20,7 @@ public class Car {
     private String id;
     private String name;
     private String brandType;
+    private String type;
     private BigDecimal price;
     private String motorPower;
     private String color;

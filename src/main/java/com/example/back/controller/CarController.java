@@ -47,10 +47,12 @@ public class CarController {
     @RequestMapping("/upload")
     public ResponseEntity<Response> getUpload(@RequestParam(value = "fileList" , required = false) MultipartFile[] files,
                                               @RequestParam(value = "brandType") String brandType,
+                                              @RequestParam(value = "type" , required = false) String type,
                                               @RequestParam(value = "name") String name) throws IOException {
         try {
             Car car = new Car();
             car.setName(name);
+            car.setType(type);
             car.setBrandType(brandType);
             String carId = carRepository.save(car).getId();
 
