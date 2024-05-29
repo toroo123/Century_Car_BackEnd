@@ -3,6 +3,7 @@ package com.example.back.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -12,5 +13,7 @@ import java.util.List;
 @Data
 public class FavoriteCar {
     private User user;
-    private List<Car> cars;
+    private String carId;
+    @Transient
+    Car car;
 }
